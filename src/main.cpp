@@ -6,7 +6,7 @@
 
 #include "menu.hpp"
 
-#include "graph.hpp"
+#include "simulated_annealing_algorithm.hpp"
 
 
 std::vector<std::vector<int>> load_data(const std::string &path)
@@ -33,29 +33,31 @@ std::vector<std::vector<int>> load_data(const std::string &path)
 }
 
 int main() {
-    Graph graph;
+    SimulatedAnnealingAlgorithm saa;
 
     utility::Menu menu("\nTraveling Salesman Problem - "
                        "Simulated Annealing Algorithm");
 
     bool was_data_loaded {false};
 
-    menu.append({"Load data", [&graph, &was_data_loaded]() { 
-        graph.load(load_data("graphs/ftv47.atsp"));
+    menu.append({"Load data", [&saa, &was_data_loaded]() { 
+        saa.load_data("graphs/ftv47.atsp", load_data);
 
         was_data_loaded = true;
     }});
-    menu.append({"Enter stop criterium", []() {
-
+    menu.append({"Enter stop criterium", [&saa]() {
+        saa.enter_stop_criterium();
     }});
-    menu.append({"Enter algorithm parameters", []() {
-
+    menu.append({"Enter algorithm parameters", [&saa]() {
+        saa.enter_algorithm_parameters();
     }});
-    menu.append({"Start", [&was_data_loaded]() {
+    menu.append({"Start", [&saa, &was_data_loaded]() {
         if (!was_data_loaded) {
             std::cout << "\nFirst load data!\n";
             return;
         }
+
+        saa.start();
     }});
 
     menu.show();
