@@ -94,12 +94,12 @@ std::vector<int> SAA::get_adjacent_permutation(const std::vector<int> &permutati
 {
     std::vector<int> adjacent_permutation {permutation};
 
-    int last_position {utility::rand(0, adjacent_permutation.size())};
+    int old_position {utility::rand(0, adjacent_permutation.size())};
     int new_position {utility::rand(0, adjacent_permutation.size())};
 
-    int value {adjacent_permutation[last_position]};
+    int value {adjacent_permutation[old_position]};
 
-    adjacent_permutation.erase(adjacent_permutation.begin() + last_position);
+    adjacent_permutation.erase(adjacent_permutation.begin() + old_position);
     adjacent_permutation.insert(adjacent_permutation.begin() + new_position, 
                                 value);
 

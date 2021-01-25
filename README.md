@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Travelling_salesman_problem
 
 The application's menu consists of 4 options:
 * load a data from the external file (you should provide your own function
-  (overwrite a body of load_data(path, matrix) function)
+  (overwrite a body of <strong>load_data</strong> function)
   to read the data from this file)
 * enter stop criterium (in number of iterations)
 * enter algorithm parameters like: <br>
